@@ -40,7 +40,7 @@ functions
       theta = sin(tau*pi()/2);
       for(t in 1:T)
       {
-        ll2 += -log(2*pi())-1.0/2.0*log(1-pow(theta,2)) - student_t_lpdf(z1[t]|4,0,1) - student_t_lpdf(z2[t]|4,0,1) - (4.0+2.0)/2.0 * log(1+( pow(z1[t],2) + pow(z2[t],2) - theta *z1[t]*z2[t])/(4.0*(1-pow(theta,2))));
+        ll2 += -log(2*pi())-1.0/2.0*log(1-pow(theta,2)) - student_t_lpdf(z1[t]|4,0,1) - student_t_lpdf(z2[t]|4,0,1) - (4.0+2.0)/2.0 * log(1+( pow(z1[t],2) + pow(z2[t],2) - 2.0 * theta *z1[t]*z2[t])/(4.0*(1-pow(theta,2))));
       }
       ll=ll2;
     }
