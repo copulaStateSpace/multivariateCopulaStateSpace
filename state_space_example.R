@@ -78,15 +78,15 @@ sample_faccopss=function(U, iter=200, burnin=100, fam_lat=100, fam_obs=100, chai
       {
         if(tau_array[i,j]>0)
         {
-          m1[i,]=cbind(sum(log(BiCopPDF(v_array[i,no_NA],U[no_NA,j], par=(BiCopTau2Par(family=1, tau=tau_array[i,j])), family=1))),
-                       sum(log(BiCopPDF(v_array[i,no_NA],U[no_NA,j], par=(BiCopTau2Par(family=2, tau=tau_array[i,j])), family=2, par2=4))), 
-                       sum(log(BiCopPDF(v_array[i,no_NA],U[no_NA,j], par=(BiCopTau2Par(family=3, tau=min(tau_array[i,j], 0.95))), family=3))),
-                       sum(log(BiCopPDF(v_array[i,no_NA],U[no_NA,j], par=(BiCopTau2Par(family=4, tau=min(tau_array[i,j], 0.95))), family=4))))
+          m1[i,]=cbind(sum(log(BiCopPDF(U[no_NA,j], v_array[i,no_NA], par=(BiCopTau2Par(family=1, tau=tau_array[i,j])), family=1))),
+                       sum(log(BiCopPDF(U[no_NA,j], v_array[i,no_NA], par=(BiCopTau2Par(family=2, tau=tau_array[i,j])), family=2, par2=4))), 
+                       sum(log(BiCopPDF(U[no_NA,j], v_array[i,no_NA], par=(BiCopTau2Par(family=3, tau=min(tau_array[i,j], 0.95))), family=3))),
+                       sum(log(BiCopPDF(U[no_NA,j], v_array[i,no_NA], par=(BiCopTau2Par(family=4, tau=min(tau_array[i,j], 0.95))), family=4))))
         }else{
-          m1[i,]=cbind(sum(log(BiCopPDF(v_array[i,no_NA],U[no_NA,j], par=(BiCopTau2Par(family=1, tau=tau_array[i,j])), family=1))),
-                       sum(log(BiCopPDF(v_array[i,no_NA],U[no_NA,j], par=(BiCopTau2Par(family=2, tau=tau_array[i,j])), family=2, par2=4))),
-                       sum(log(BiCopPDF(v_array[i,no_NA],U[no_NA,j], par=(BiCopTau2Par(family=23, tau=max(tau_array[i,j], -0.95))), family=23))),
-                       sum(log(BiCopPDF(v_array[i,no_NA],U[no_NA,j], par=(BiCopTau2Par(family=24, tau=max(tau_array[i,j], -0.95))), family=24))))
+          m1[i,]=cbind(sum(log(BiCopPDF(U[no_NA,j], v_array[i,no_NA], par=(BiCopTau2Par(family=1, tau=tau_array[i,j])), family=1))),
+                       sum(log(BiCopPDF(U[no_NA,j], v_array[i,no_NA], par=(BiCopTau2Par(family=2, tau=tau_array[i,j])), family=2, par2=4))),
+                       sum(log(BiCopPDF(U[no_NA,j], v_array[i,no_NA], par=(BiCopTau2Par(family=23, tau=max(tau_array[i,j], -0.95))), family=23))),
+                       sum(log(BiCopPDF(U[no_NA,j], v_array[i,no_NA], par=(BiCopTau2Par(family=24, tau=max(tau_array[i,j], -0.95))), family=24))))
         }
         f_samples[i,j]=sample(x=1:4, size=1, prob=exp(m1[i,]-max(m1[i,])))
       }else{
